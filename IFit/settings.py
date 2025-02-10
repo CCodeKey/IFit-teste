@@ -15,8 +15,14 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+# hello_django/settings.py
+
+
+APP_NAME = os.environ.get("FLY_APP_NAME")
+ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev"]  # ← Updated!
+
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -30,6 +36,7 @@ INSTALLED_APPS = [
     'recomendacao'
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -40,11 +47,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'IFit.urls'
 
-      
-
-
+    
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -61,6 +67,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'IFit.wsgi.application'
 
 
@@ -68,6 +75,7 @@ WSGI_APPLICATION = 'IFit.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+
 
 DATABASES = {
     'default': {
@@ -79,14 +87,6 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-
-# DATABASES = { # os.getenv('BATA_BASE_URL')
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -124,12 +124,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
